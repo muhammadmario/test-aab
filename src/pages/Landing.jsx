@@ -1,20 +1,26 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Modal from "../components/Modal";
+import { Circles } from "react-loader-spinner";
 
 const Landing = () => {
   const [data, setData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUniversity, setSelectedUniversity] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(
         "http://universities.hipolabs.com/search?country=Indonesia"
       );
       setData(response.data);
     } catch (error) {
+      setLoading(true);
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -28,7 +34,6 @@ const Landing = () => {
   };
 
   const closeModal = () => {
-    // Clear the selected university and close the modal
     setSelectedUniversity({});
     setIsModalOpen(false);
   };
@@ -74,6 +79,20 @@ const Landing = () => {
           </tbody>
         </table>
       </div>
+      {loading && (
+        <div className="w-full  flex justify-center items-center">
+          <Circles
+            height="80"
+            width="80"
+            radius="9"
+            color="black"
+            ariaLabel="loading"
+            wrapperStyle
+            wrapperClass
+          />
+        </div>
+      )}
+
       {/* Render the Modal component if the isModalOpen state is true */}
       {isModalOpen && (
         <Modal

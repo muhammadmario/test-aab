@@ -1,11 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
+  const navigate = useNavigate();
+  const handleSubmit = () => {
+    navigate("/landing");
+  };
   return (
-    <form className="w-full">
+    <form className="w-full" onSubmit={handleSubmit}>
       <div className="mb-5">
         <label
-          for="email"
+          htmlFor="email"
           className="block mb-2 text-sm font-medium text-gray-900"
         >
           Your email
@@ -20,7 +25,7 @@ const Form = () => {
       </div>
       <div className="mb-5">
         <label
-          for="password"
+          htmlFor="password"
           className="block mb-2 text-sm font-medium text-gray-900 "
         >
           Your password

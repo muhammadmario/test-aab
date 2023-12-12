@@ -35,7 +35,9 @@ const Landing = () => {
 
   return (
     <div className="max-w-screen-lg mx-auto">
-      <h1 className="text-center text-2xl font-semibold">Data Universitas</h1>
+      <h1 className="text-center text-2xl font-semibold my-4">
+        Data Universitas
+      </h1>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
@@ -55,7 +57,7 @@ const Landing = () => {
             {data &&
               data.map((item, index) => (
                 <tr
-                  className="odd:bg-white even:bg-gray-50  border-b "
+                  className="odd:bg-white even:bg-gray-50  border-b cursor-pointer"
                   onClick={() => handleDetail(item)}
                   key={index}
                 >
